@@ -1,3 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+// Định nghĩa cấu trúc của một nút (Node) trên cây
+struct Node {
+    int namSinh;
+    struct Node* left;
+    struct Node* right;
+};
+// Hàm tiện ích để tạo một nút mới
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->namSinh = value;
