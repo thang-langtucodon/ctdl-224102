@@ -40,3 +40,16 @@ bool searchBST(struct Node* root, int value, int step) {
     }
 
     printf("-> Buoc %d: So sanh voi nut [%d]", step, root->namSinh);
+ // Trường hợp tìm thấy giá trị bằng nhau
+    if (value == root->namSinh) {
+        printf(" => Tim thay %d!\n", value);
+        
+        // Vì có dấu '<=' nên các phần tử trùng nhau (nếu có) sẽ nằm ở nhánh TRÁI
+        // Ta kiểm tra xem còn nút trùng nào ở ngay phía dưới không
+        if (root->left != NULL && root->left->namSinh == value) {
+            printf("   (Luu y: Co them sinh vien trung nam sinh o nhanh ben trai)\n");
+            searchBST(root->left, value, step + 1);
+        }
+        return true;
+    }
+	1
