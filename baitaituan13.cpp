@@ -11,3 +11,13 @@ struct Node {
 struct Node* createNode(int value) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->namSinh = value;
+     newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+// ham them nut vao cay
+struct Node* insert(struct Node* root, int value) {
+    // Nếu cây (hoặc nhánh) đang rỗng, tạo nút mới tại đây
+    if (root == NULL) {
+        return createNode(value);
+    }
