@@ -52,4 +52,36 @@ bool searchBST(struct Node* root, int value, int step) {
         }
         return true;
     }
-	1
+	 // Di chuyển tiếp dựa theo giá trị
+    if (value < root->namSinh) {
+        printf(" -> Di sang TRAI\n");
+        return searchBST(root->left, value, step + 1);
+    } else {
+        printf(" -> Di sang PHAI\n");
+        return searchBST(root->right, value, step + 1);
+    }
+}
+//ham duyet cay theo thu tu tang dan de kiem tra cau truc cay
+void inOrder(struct Node* root) {
+    if (root != NULL) {
+        inOrder(root->left);
+        printf("%d ", root->namSinh);
+        inOrder(root->right);
+    }
+}
+// giai phong bo nho cua cay khi ket thuc chuong trinh
+void freeTree(struct Node* root) {
+    if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+// giai phong bo nho cua cay khi ket thuc chuong trinh
+void freeTree(struct Node* root) {
+    if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
