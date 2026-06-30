@@ -96,3 +96,12 @@ cout << "Cây khung min: ";
         if (i < socanhcay - 1) cout << ", "; }
     cout << endl;
 }
+void Inmatran(int P[Sotinh_max][Sotinh_max], int n) { // in ra ma trận
+    cout << setw(6) << " ";
+    for (int j = 0; j < n; j++) { cout << setw(5) << DSTinh[j]; }
+    cout << endl;
+    for (int i = 0; i < n; i++) {
+        cout << setw(6) << DSTinh[i];
+        for (int j = 0; j < n; j++)    cout << setw(5) << P[i][j];
+        cout << endl;
+    }  }
