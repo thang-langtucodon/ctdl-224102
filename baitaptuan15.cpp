@@ -61,3 +61,35 @@ private:
             cout << endl;
         }
     }
+    void BFS(string dinhBatDau) {
+        if (anhXaTen.find(dinhBatDau) == anhXaTen.end()) {
+            cout << "Khong tim thay dinh!\n";
+            return;
+        }
+
+        int start = anhXaTen[dinhBatDau];
+
+        vector<bool> daTham(V, false);
+        queue<int> hangDoi;
+
+        daTham[start] = true;
+        hangDoi.push(start);
+
+        cout << "\n===== DUYET BFS TU " << dinhBatDau << " =====\n";
+
+        while (!hangDoi.empty()) {
+            int u = hangDoi.front();
+            hangDoi.pop();
+
+            cout << tenDinh[u] << " ";
+
+            for (int v = 0; v < V; v++) {
+                if (maTran[u][v] == 1 && !daTham[v]) {
+                    daTham[v] = true;
+                    hangDoi.push(v);
+                }
+            }
+        }
+
+        cout << endl;
+    }
