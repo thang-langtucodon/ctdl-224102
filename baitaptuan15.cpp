@@ -29,3 +29,35 @@ private:
             V++;
         }
     }
+     void themCanh(string u, string v) {
+        if (anhXaTen.find(u) == anhXaTen.end() ||
+            anhXaTen.find(v) == anhXaTen.end()) {
+            cout << "Loi: Dinh khong ton tai!\n";
+            return;
+        }
+
+        int id_u = anhXaTen[u];
+        int id_v = anhXaTen[v];
+
+        maTran[id_u][id_v] = 1;
+        maTran[id_v][id_u] = 1;
+    }
+ void hienThiMaTranKe() {
+        cout << "\n===== MA TRAN KE =====\n\n";
+
+        cout << "\t";
+        for (int i = 0; i < V; i++)
+            cout << tenDinh[i] << "\t";
+
+        cout << endl;
+
+        for (int i = 0; i < V; i++) {
+            cout << tenDinh[i] << "\t";
+
+            for (int j = 0; j < V; j++) {
+                cout << maTran[i][j] << "\t";
+            }
+
+            cout << endl;
+        }
+    }
