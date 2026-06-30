@@ -147,10 +147,10 @@ private:
     }
     void duongDiNganNhat(string diemDau, string diemCuoi) {
 
-        cout << "\n===== DUONG DI NGAN NHAT =====\n";
+    cout << "\n===== DUONG DI NGAN NHAT =====\n";
 
-        timDuongDi();
-    }
+    timDuongDi(diemDau, diemCuoi);
+}
 };
 
 int main() {
