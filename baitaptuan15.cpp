@@ -61,6 +61,58 @@ private:
             cout << endl;
         }
     }
+    void timDuongDi(string diemDau, string diemCuoi) {
+    if (anhXaTen.find(diemDau) == anhXaTen.end() ||
+        anhXaTen.find(diemCuoi) == anhXaTen.end()) {
+        cout << "Khong tim thay dinh!\n";
+        return;
+    }
+
+    int start = anhXaTen[diemDau];
+    int goal = anhXaTen[diemCuoi];
+
+    vector<bool> visited(V, false);
+    vector<int> parent(V, -1);
+    queue<int> q;
+
+    visited[start] = true;
+    q.push(start);
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+
+        if (u == goal)
+            break;
+
+        for (int v = 0; v < V; v++) {
+            if (maTran[u][v] == 1 && !visited[v]) {
+                visited[v] = true;
+                parent[v] = u;
+                q.push(v);
+            }
+        }
+    }
+
+    if (!visited[goal]) {
+        cout << "Khong ton tai duong di!\n";
+        return;
+    }
+
+    vector<int> path;
+    for (int v = goal; v != -1; v = parent[v])
+        path.push_back(v);
+
+    reverse(path.begin(), path.end());
+
+    cout << "Duong di: ";
+    for (int i = 0; i < path.size(); i++) {
+        cout << tenDinh[path[i]];
+        if (i != path.size() - 1)
+            cout << " -> ";
+    }
+    cout << endl;
+}
     void BFS(string dinhBatDau) {
         if (anhXaTen.find(dinhBatDau) == anhXaTen.end()) {
             cout << "Khong tim thay dinh!\n";
@@ -93,3 +145,57 @@ private:
 
         cout << endl;
     }
+    void duongDiNganNhat(string diemDau, string diemCuoi) {
+
+        cout << "\n===== DUONG DI NGAN NHAT =====\n";
+
+        timDuongDi();
+    }
+};
+
+int main() {
+
+    DoThiMaTranKe g;
+
+    // Them cac thanh pho
+    g.themDinh("Ha Noi");
+    g.themDinh("Hai Duong");
+    g.themDinh("Hung Yen");
+    g.themDinh("Phu Ly");
+    g.themDinh("Hoa Binh");
+    g.themDinh("Son Tay");
+    g.themDinh("Thai Nguyen");
+    g.themDinh("Bac Ninh");
+    g.themDinh("Bac Giang");
+    g.themDinh("Uong Bi");
+    g.themDinh("Hai Phong");
+
+    // Them cac tuyen duong (D1 -> D13)
+    g.themCanh("Ha Noi", "Hai Duong");
+    g.themCanh("Hai Duong", "Hung Yen");
+    g.themCanh("Hung Yen", "Phu Ly");
+    g.themCanh("Phu Ly", "Ha Noi");
+    g.themCanh("Hoa Binh", "Ha Noi");
+    g.themCanh("Son Tay", "Ha Noi");
+    g.themCanh("Thai Nguyen", "Ha Noi");
+    g.themCanh("Ha Noi", "Bac Ninh");
+    g.themCanh("Bac Ninh", "Bac Giang");
+    g.themCanh("Bac Giang", "Uong Bi");
+    g.themCanh("Bac Ninh", "Uong Bi");
+    g.themCanh("Uong Bi", "Hai Phong");
+    g.themCanh("Hai Duong", "Hai Phong");
+
+    // Hien thi ma tran ke
+    g.hienThiMaTranKe();
+
+    // BFS tu Ha Noi
+    g.BFS("Ha Noi");
+
+    // Tim duong di
+    g.timDuongDi("Ha Noi", "Hai Phong");
+
+    // Tim duong di ngan nhat
+    g.duongDiNganNhat("Hoa Binh", "Hai Phong");
+
+    return 0;
+}
