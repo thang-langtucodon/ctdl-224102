@@ -104,4 +104,19 @@ void Inmatran(int P[Sotinh_max][Sotinh_max], int n) { // in ra ma trận
         cout << setw(6) << DSTinh[i];
         for (int j = 0; j < n; j++)    cout << setw(5) << P[i][j];
         cout << endl;
-    }  }
+    }  }   
+    int main() {
+    int n = Sotinh_max;
+    Matran g; 
+    Khoitaomatran(g, n);
+    int duongdi[][3] = { {0, 6, 1}, {6, 7, 2}, {8, 7, 3}, {0, 8, 4}, {0, 9, 5},   
+    {0, 10, 6},{0, 1, 7}, {0, 2, 8}, {2, 3, 9}, {3, 4, 10}, {2, 4, 11},  {4, 5, 12}, {6, 5, 13}   };
+    int soTuyen = sizeof(duongdi) / sizeof(duongdi[0]);
+     for(int i = 0; i < soTuyen; i++) { 
+    ThemDuongMaTran(g, duongdi[i][0], duongdi[i][1], duongdi[i][2]);}
+    cout << "Ma tran ban dau" << endl ; 
+    Inmatran(g.matrix, n);
+Prim(g);
+    TTKruskal(g);
+    return 0;
+}
